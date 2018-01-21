@@ -61,6 +61,11 @@ syn match markdownH2 "^.\+\n-\+$" contained contains=@markdownInline,markdownHea
 
 syn match markdownHeadingRule "^[=-]\+$" contained
 
+" Add Pandoc title block support.
+" https://pandoc.org/MANUAL.html#extension-pandoc_title_block
+syn match pandocTitleBlockTitle /^%.*\n/
+syn match pandocTitleBlockMark /%\ / contained containedin=pandocTitleBlockTitle
+
 syn region markdownH1 matchgroup=markdownH1Delimiter start="##\@!"      end="#*\s*$" keepend oneline contains=@markdownInline,markdownAutomaticLink contained
 syn region markdownH2 matchgroup=markdownH2Delimiter start="###\@!"     end="#*\s*$" keepend oneline contains=@markdownInline,markdownAutomaticLink contained
 syn region markdownH3 matchgroup=markdownH3Delimiter start="####\@!"    end="#*\s*$" keepend oneline contains=@markdownInline,markdownAutomaticLink contained
@@ -128,6 +133,9 @@ endif
 
 syn match markdownEscape "\\[][\\`*_{}()<>#+.!-]"
 syn match markdownError "\w\@<=_\w\@="
+
+hi def link pandocTitleBlockMark          markdownHeadingDelimiter
+hi def link pandocTitleBlockTitle         htmlH1
 
 hi def link markdownH1                    htmlH1
 hi def link markdownH2                    htmlH2
