@@ -97,6 +97,7 @@ syn region markdownLinkText matchgroup=markdownLinkTextDelimiter start="!\=\[\%(
 syn region markdownLink matchgroup=markdownLinkDelimiter start="(" end=")" contains=markdownUrl keepend contained
 syn region markdownId matchgroup=markdownIdDelimiter start="\[" end="\]" keepend contained
 syn region markdownAutomaticLink matchgroup=markdownUrlDelimiter start="<\%(\w\+:\|[[:alnum:]_+-]\+@\)\@=" end=">" keepend oneline
+syn match markdownExtendedAutolink "\(http:\|https:\|ftp:\)\?//[^\t "'<>|]\+[A-Za-z0-9/]"
 
 let s:concealends = ''
 if has('conceal') && get(g:, 'markdown_syntax_conceal', 1) == 1
@@ -163,6 +164,7 @@ hi def link markdownLinkText              htmlLink
 hi def link markdownIdDeclaration         Typedef
 hi def link markdownId                    Type
 hi def link markdownAutomaticLink         markdownUrl
+hi def link markdownExtendedAutolink      markdownUrl
 hi def link markdownUrl                   Float
 hi def link markdownUrlTitle              String
 hi def link markdownIdDelimiter           markdownLinkDelimiter
