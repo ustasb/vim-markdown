@@ -118,6 +118,12 @@ syn region markdownCode matchgroup=markdownCodeDelimiter start="^\s*\z(\~\{3,\}\
 syn match markdownFootnote "\[^[^\]]\+\]"
 syn match markdownFootnoteDefinition "^\[^[^\]]\+\]:"
 
+" LaTeX math highlighting
+syntax region Statement oneline matchgroup=Delimiter start="\$" end="\$"
+syntax region Statement matchgroup=Delimiter start="\\begin{.*}" end="\\end{.*}" contains=Statement
+syntax region Statement matchgroup=Delimiter start="{" end="}" contains=Statement
+syntax region Statement matchgroup=Delimiter start="$$" end="$$" contains=Statement
+
 if main_syntax ==# 'markdown'
   let s:done_include = {}
   for s:type in g:markdown_fenced_languages
