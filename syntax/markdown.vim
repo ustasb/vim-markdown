@@ -115,6 +115,8 @@ syn region markdownCode matchgroup=markdownCodeDelimiter start="`` \=" end=" \=`
 syn region markdownCode matchgroup=markdownCodeDelimiter start="^\s*\z(`\{3,\}\).*$" end="^\s*\z1\ze\s*$" keepend
 syn region markdownCode matchgroup=markdownCodeDelimiter start="^\s*\z(\~\{3,\}\).*$" end="^\s*\z1\ze\s*$" keepend
 
+syn match markdownEmailLinkInText /[[:alnum:]._%+-]\+@[[:alnum:].-]\+\.\w\{2,4}/ contains=@NoSpell
+
 syn match markdownFootnote "\[^[^\]]\+\]"
 syn match markdownFootnoteDefinition "^\[^[^\]]\+\]:"
 
@@ -171,6 +173,7 @@ hi def link markdownIdDeclaration         Typedef
 hi def link markdownId                    Type
 hi def link markdownAutomaticLink         markdownUrl
 hi def link markdownExtendedAutolink      markdownUrl
+hi def link markdownEmailLinkInText       markdownUrl
 hi def link markdownUrl                   Float
 hi def link markdownUrlTitle              String
 hi def link markdownIdDelimiter           markdownLinkDelimiter
